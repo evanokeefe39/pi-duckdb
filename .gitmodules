@@ -1,0 +1,8 @@
+[submodule "vendor/duckdb-skills"]
+	path = vendor/duckdb-skills
+	url = https://github.com/duckdb/duckdb-skills
+	branch = main
+[submodule "vendor/motherduck-skills"]
+	path = vendor/motherduck-skills
+	url = https://github.com/motherduckdb/agent-skills
+	branch = main
