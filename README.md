@@ -30,10 +30,14 @@ Then enable the skills via `pi config`.
 
 ## What you get
 
-### This package's skill
+### This package's skills
 - **install-duckdb-cli** — detect the OS, install/upgrade the DuckDB CLI binary, put
   it on PATH, and verify. (Installs the *binary*; DuckDB's own `install-duckdb` skill
-  handles *extensions*.)
+  handles *extensions*.) As a final onboarding step it offers to set up MotherDuck.
+- **setup-motherduck** — onboarding: asks whether you want MotherDuck (cloud DuckDB),
+  and if so stores `MOTHERDUCK_TOKEN` in `.env` and verifies a `md:` connection. No MCP.
+
+Copy `.env.example` to `.env` and fill in `MOTHERDUCK_TOKEN` if using MotherDuck.
 
 ### Bundled from [duckdb/duckdb-skills](https://github.com/duckdb/duckdb-skills) (MIT)
 `attach-db`, `query`, `read-file`, `convert-file`, `duckdb-docs`, `read-memories`,

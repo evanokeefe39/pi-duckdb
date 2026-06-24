@@ -56,6 +56,12 @@ duckdb -c "SELECT version();"
 Report the version back to the user. If it still fails, surface the exact error —
 do not silently continue.
 
+## Step 5 — Onboarding: offer MotherDuck
+
+After the CLI works, ask the user whether they also want to connect **MotherDuck**
+(cloud DuckDB). If yes, run the `setup-motherduck` skill (token -> `.env` -> verify a
+`md:` connection). If no, local DuckDB is ready as-is — they can set up MotherDuck later.
+
 ## Notes
 - This skill installs the CLI binary only. To install DuckDB *extensions*
   (httpfs, postgres, parquet, etc.), use the `install-duckdb` skill from
