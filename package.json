@@ -1,18 +1,42 @@
 {
   "name": "pi-duckdb",
   "version": "0.1.0",
+  "private": false,
   "description": "Pi coding-agent package: installs the DuckDB CLI and bundles DuckDB's official skills. No MCP — skills + CLI only.",
   "keywords": [
+    "pi",
     "pi-package",
-    "pi-coding-agent",
+    "pi-extension",
     "duckdb",
     "skills"
   ],
+  "homepage": "https://github.com/evanokeefe39/pi-duckdb#readme",
+  "bugs": {
+    "url": "https://github.com/evanokeefe39/pi-duckdb/issues"
+  },
   "license": "MIT",
   "author": "evanokeefe39",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/evanokeefe39/pi-duckdb.git"
+  },
+  "type": "module",
+  "files": [
+    "skills",
+    "vendor",
+    "scripts",
+    "README.md",
+    "LICENSE",
+    ".env.example"
+  ],
+  "scripts": {
+    "postinstall": "node scripts/postinstall.mjs"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   },
   "pi": {
     "skills": [
