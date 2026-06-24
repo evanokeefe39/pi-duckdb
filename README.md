@@ -31,13 +31,29 @@ Then enable the skills via `pi config`.
 ## What you get
 
 ### This package's skills
+- **onboarding** — guided entry point. Runs the steps in order: install CLI ->
+  MotherDuck? -> dev defaults? -> backups? -> protect file? (opt-in). Start here.
 - **install-duckdb-cli** — detect the OS, install/upgrade the DuckDB CLI binary, put
   it on PATH, and verify. (Installs the *binary*; DuckDB's own `install-duckdb` skill
-  handles *extensions*.) As a final onboarding step it offers to set up MotherDuck.
-- **setup-motherduck** — onboarding: asks whether you want MotherDuck (cloud DuckDB),
-  and if so stores `MOTHERDUCK_TOKEN` in `.env` and verifies a `md:` connection. No MCP.
+  handles *extensions*.)
+- **setup-motherduck** — asks whether you want MotherDuck (cloud DuckDB), and if so
+  stores `MOTHERDUCK_TOKEN` in `.env` and verifies a `md:` connection. No MCP.
+- **init-duckdb-project** — scaffold sensible defaults: `init.sql` (memory/threads,
+  httpfs/parquet/json), a `justfile`/`Makefile` of commands, and gitignore entries.
+- **setup-backups** — scheduled backups of a local `.duckdb`. Recommends a location
+  **outside the project dir** (survives an over-permissive agent wiping the project) or
+  S3; generates a script + scheduler entry (cron / launchd / Task Scheduler) and
+  verifies a restore.
+- **protect-db-file** *(opt-in)* — keep the database file outside the project dir,
+  gitignore artifacts, optionally symlink (with caveats) or set read-only.
 
-Copy `.env.example` to `.env` and fill in `MOTHERDUCK_TOKEN` if using MotherDuck.
+Copy `.env.example` to `.env` and fill in what you use (`MOTHERDUCK_TOKEN`,
+`DUCKDB_DATABASE`, `DUCKDB_BACKUP_DIR`).
+
+> Note: backups matter most for **local** DuckDB files — MotherDuck-hosted data has
+> managed durability. Symlinks are optional and need Developer Mode/admin on Windows;
+> the default safety pattern is just pointing DuckDB at an absolute path outside the
+> project (DuckDB writes its WAL next to the real file).
 
 ### Bundled from [duckdb/duckdb-skills](https://github.com/duckdb/duckdb-skills) (MIT)
 `attach-db`, `query`, `read-file`, `convert-file`, `duckdb-docs`, `read-memories`,
