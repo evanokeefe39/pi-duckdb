@@ -46,6 +46,16 @@ Then enable the skills via `pi config`.
   verifies a restore.
 - **protect-db-file** *(opt-in)* — keep the database file outside the project dir,
   gitignore artifacts, optionally symlink (with caveats) or set read-only.
+- **duckdb-best-practices** — curated reference: antipatterns, gotchas, perf tuning,
+  and high-value features (grounded in the official Performance Guide). Delegates live
+  lookups to `duckdb-docs`.
+
+### Docs search (already included, no MCP)
+The bundled **duckdb-docs** skill (from `vendor/duckdb-skills`) downloads DuckDB's
+official prebuilt full-text index, caches it offline at `~/.duckdb/docs`, and runs BM25
+search over the docs, blog, and DuckLake docs — entirely via the `duckdb` CLI + `fts`
+extension. No MCP server and no API key needed, so this package does not bundle
+context7 or any external docs service. See `RESOURCES.md` for deeper reading.
 
 Copy `.env.example` to `.env` and fill in what you use (`MOTHERDUCK_TOKEN`,
 `DUCKDB_DATABASE`, `DUCKDB_BACKUP_DIR`).
